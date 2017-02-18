@@ -1,0 +1,8 @@
+{
+  "name": "crystalmethlabs",
+  "description": "something something http://crystalmathlabs.com",
+  "author": "enra4",
+  "dependencies": {
+    "request": "^2.79.0"
+  }
+}
