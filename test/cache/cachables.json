@@ -1,0 +1,79 @@
+{
+	"update": [
+		{
+			"player": "lynx_titan"
+		}
+	],
+	"lastcheck": [
+		{
+			"player": "lynx_titan"
+		}
+	],
+	"lastchange": [
+		{
+			"player": "lynx_titan"
+		}
+	],
+	"stats": [
+		{
+			"player": "lynx_titan"
+		}
+	],
+	"ttm": [
+		{
+			"player": "lynx_titan"
+		}
+	],
+	"search": [
+		{
+			"player": "lynx_titan"
+		}
+	],
+	"recordsofplayer": [
+		{
+			"player": "lynx_titan"
+		}
+	],
+	"previousname": [
+		{
+			"player": "lynx_titan"
+		}
+	],
+	"trackehp": [
+		{
+			"player": "lynx_titan",
+			"time": "36000"
+		}
+	],
+	"comptotal": [
+		{
+			"competition": "",
+			"skill": ""
+		}
+	],
+	"comprankings": [
+		{
+			"competition": "",
+			"skill": ""
+		}
+	],
+	"records": [
+		{
+			"timeperiod": "2d",
+			"skill": "hunting",
+			"players": "lynx_titan"
+		}
+	],
+	"currenttop": [
+		{
+			"timeperiod": "2d",
+			"skill": "fishing"
+		}
+	],
+	"virtualhiscoresatplayer": [
+		{
+			"player": "lynx_titan",
+			"page": "virtualtotal"
+		}
+	]
+}

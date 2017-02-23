@@ -4,5 +4,13 @@
   "author": "enra4",
   "dependencies": {
     "request": "^2.79.0"
+  },
+  "devDependencies": {
+    "rewire": "^2.5.2",
+    "tape": "^4.6.3"
+  },
+  "scripts": {
+    "test": "tape test/*",
+	"cache-gen": "node test/cache/generate"
   }
 }
