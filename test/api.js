@@ -9,5 +9,10 @@ const cache = require('./cache/cache.json')
 
 module.exports = (url, cb) => {
 	const r = cache[url]
+
+	if(r === undefined) {
+		console.log('missing data for url ' + url)
+	}
+
 	cb(r.error, null, r.body)
 }
