@@ -12,7 +12,7 @@ module.exports = (url, cb) => {
 
 	if(r === undefined) {
 		console.log('missing data for url ' + url)
+	} else {
+		cb(r.error, null, r.body)
 	}
-
-	cb(r.error, null, r.body)
 }

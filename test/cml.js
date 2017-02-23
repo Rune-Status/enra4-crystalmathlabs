@@ -3,26 +3,49 @@ const rewire = require('rewire')
 const Crystalmethlabs = rewire('../lib/crystalmethlabs')
 Crystalmethlabs.__set__('request', require('./api'))
 
-test('crystal meth labs module', (t) => {
-	t.test('rs3', (t) => {
-		const cml = new Crystalmethlabs('rs3')
-		t.test('update', (t) => {
-			t.plan(1)
-			cml.update('lynx_titan', (err) => {
-				t.equal(err, null)
-			})
-		})
-		t.test('lastcheck', (t) => {
-			t.plan(1)
-			cml.lastcheck('lynx_titan', (err, body) => {
-				// body should be a number
-				t.ok(!isNaN(parseInt(body)))
-			})
-		})
-		t.end()
-	})
+let games = ['osrs', 'rs3']
 
-	t.test('osrs', (t) => {
-		t.end()
-	})
+test('crystal meth labs module', (t) => {
+	for(let game of games) {
+		t.test(game, (t) => {
+			const cml = new Crystalmethlabs(game)
+
+			t.test('update', (t) => {
+				t.plan(1)
+
+				cml.update('lynx_titan', (err) => {
+					t.equal(err, null)
+				})
+			})
+
+			t.test('expecting integer', (t) => {
+				let n
+
+				if(game === 'osrs') {
+					n = 3
+				} else {
+					n = 2
+				}
+
+				t.plan(n)
+
+				cml.lastcheck('lynx_titan', (err, sec) => {
+					t.true(!isNaN(sec))
+				})
+
+				cml.lastchange('lynx_titan', (err, sec) => {
+					t.true(!isNaN(sec))
+				})
+
+				// not gonna bother finding comp for rs3 and such
+				if(game === 'osrs') {
+					cml.compTotal('7235', 'magic', (err, xp) => {
+						t.true(!isNaN(xp))
+					})
+				}
+			})
+
+			t.end()
+		})
+	}
 })
