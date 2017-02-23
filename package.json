@@ -10,7 +10,7 @@
     "tape": "^4.6.3"
   },
   "scripts": {
-    "test": "tape test/*",
+    "test": "tape test/tests.js",
 	"cache-gen": "node test/cache/generate"
   }
 }
