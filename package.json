@@ -11,6 +11,6 @@
   },
   "scripts": {
     "test": "tape test/tests.js",
-	"cache-gen": "node test/cache/generate"
+    "cache-gen": "node test/cache/generate"
   }
 }
