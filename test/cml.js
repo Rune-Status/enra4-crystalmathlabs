@@ -45,6 +45,28 @@ test('crystal meth labs module', (t) => {
 				}
 			})
 
+			if(game === 'osrs') {
+				t.test('stats and tracking', (t) => {
+					t.plan(6)
+
+					cml.stats('lynx_titan', (err, stats) => {
+						let attack = stats.attack
+
+						t.true(!isNaN(attack.level))
+						t.true(!isNaN(attack.xp))
+						t.true(!isNaN(attack.rank))
+					})
+
+					cml.track('lynx_titan', 24 * 7 * 3600, (err, stats) => {
+						let attack = stats.attack
+
+						t.true(!isNaN(attack.xpGained))
+						t.true(!isNaN(attack.ranksGained))
+						t.true(!isNaN(attack.levelsGained))
+					})
+				})
+			}
+
 			t.end()
 		})
 	}

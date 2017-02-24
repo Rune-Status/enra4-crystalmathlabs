@@ -42,7 +42,7 @@
 	"trackehp": [
 		{
 			"player": "lynx_titan",
-			"time": "36000"
+			"time": 604800
 		}
 	],
 	"comptotal": [
@@ -73,7 +73,7 @@
 	"virtualhiscoresatplayer": [
 		{
 			"player": "lynx_titan",
-			"page": "virtualtotal"
+			"page": "timeplayed"
 		}
 	]
 }
