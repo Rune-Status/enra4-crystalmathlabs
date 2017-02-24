@@ -38,8 +38,12 @@ cml.lastcheck('lynx titan', (err, sec) => {
 __stats([username], [callback])__ *-> cb(err, stats)*
 
 Gets stats for a player
+
 `stats` is an object containing objects for each skill
+
 Each skill is an object containing keys: `level`, `xp` and `rank`
+
+__Note__ that the `ehp` object contains keys: `hours` and `rank`
 
 ```js
 cml.stats('lynx titan', (err, stats) => {
@@ -52,11 +56,11 @@ cml.stats('lynx titan', (err, stats) => {
 })
 ```
 
-__Note__ that the `ehp` object contains keys: `hours` and `rank`
-
 __track([username], [timeperiod], [callback])__ *-> cb(err, stats)*
 
 Gets gains for all skills over a certain `timeperiod`
+
+__Note__ that negative `ranksGained` is good
 
 ```js
 let week = 24 * 7 * 3600
@@ -83,8 +87,6 @@ cml.track('lynx titan', week, (err, stats) => {
 })
 ```
 
-__Note__ that negative `ranksGained` is good
-
 __recordsOfPlayer([username], [callback])__ *-> cb(err, records)*
 
 Gets daily, weekly and monthly records for all skills
@@ -105,6 +107,7 @@ cml.recordsOfPlayer('lynx titan', (err, records) => {
 __ttm([username], [callback])__ *-> cb(err, ttm)*
 
 Gets efficient hours left for account to be maxed, and rank in terms of maxing
+
 Can be used to find out who were first to max
 
 ```js
@@ -118,11 +121,15 @@ cml.ttm('lynx titan', (err, ttm) => {
 __previousName([username], [callback])__ *-> cb(err, previous)*
 
 Checks if there was a previous username for the account
+
 If there was, `previous` is set to the previous username
+
 If there wasn't, `previous === false`
 
 __search([username], [callback])__ *-> cb(err, res)*
 
 Searches to see if an account exists
+
 `res` is `true` if account exists and `false` if not
+
 Even if Crystal Math Labs has no data for the account, `res === true`
