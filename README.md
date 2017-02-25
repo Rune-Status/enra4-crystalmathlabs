@@ -27,7 +27,7 @@ npm install crystalmethlabs --save
 
 ### __`new Crystalmethlabs([game])`__
 
-* `game` *String* that can be set to `'osrs' | 'rs3'` (optional, default: `'osrs'`)
+* `game` *String* that can be set to `'osrs' || 'rs3'` (optional, default: `'osrs'`)
 
 ```js
 const Crystalmethlabs = require('crystalmethlabs')
