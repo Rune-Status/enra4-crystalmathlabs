@@ -67,6 +67,8 @@ test('crystal meth labs module', (t) => {
 				})
 			}
 
+			// not gonna do any more testing bc im a lazy prick
+
 			t.end()
 		})
 	}

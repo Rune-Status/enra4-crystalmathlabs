@@ -1,8 +1,47 @@
 # Crystalmethlabs
 
-# Methods
+A JavaScript library for using Crystal Math Labs
 
-####__.update([username], [callback])__ *-> cb(err)*
+```js
+const Crystalmethlabs = require('crystalmethlabs')
+const cml = new Crystalmethlabs()
+
+cml.currentTop('ehp', 'week', (err, top) => {
+	console.log(top)
+	// [ { username: 'eg_froggen', gained: 106.69 },
+	//   { username: 'razor_beast', gained: 102.32 },
+	//   { username: 'fk_wmk', gained: 100.93 },
+	//   ...
+	//   ...
+	//   { username: 'abekat', gained: 68.17 } ]
+})
+```
+
+## Install
+
+```sh
+npm install crystalmethlabs --save
+```
+
+## Getting started
+
+### __`new Crystalmethlabs([game])`__
+
+* `game` *String* that can be set to `'osrs' | 'rs3'` (optional, default: `'osrs'`)
+
+```js
+const Crystalmethlabs = require('crystalmethlabs')
+
+let osrsFirst = new Crystalmethlabs('osrs') // -> osrs
+let osrsSecond = new Crystalmethlabs() // -> osrs
+let osrsThird = new Crystalmethlabs('fghkfdjhkl') // -> osrs
+
+let rs3 = new Crystalmethlabs('rs3') // -> rs3
+```
+
+## Methods
+
+### __`.update(username, [callback])`__  *-> cb(err)*
 
 Updates cml profile.
 
@@ -15,7 +54,7 @@ cml.update('lynx titan', (err) => {
 })
 ```
 
-####__.lastcheck([username], [callback])__ *-> cb(err, sec)*
+### __`.lastcheck(username, callback)`__  *-> cb(err, sec)*
 
 Checks when a player was last checked.
 
@@ -25,7 +64,7 @@ cml.lastcheck('lynx titan', (err, sec) => {
 })
 ```
 
-####__.lastchange([username], [callback])__ *-> cb(err, sec)*
+### __`.lastchange(username, callback)`__ *-> cb(err, sec)*
 
 Checks when a player was last changed.
 
@@ -35,7 +74,7 @@ cml.lastcheck('lynx titan', (err, sec) => {
 })
 ```
 
-####__.stats([username], [callback])__ *-> cb(err, stats)*
+### __`.stats(username, callback)`__ *-> cb(err, stats)*
 
 Gets stats for a player.
 `stats` is an object containing objects for each skill.
@@ -54,14 +93,14 @@ cml.stats('lynx titan', (err, stats) => {
 })
 ```
 
-####__.track([username], [timeperiod], [callback])__ *-> cb(err, stats)*
+### __`.track(username, timeperiod, callback)`__ *-> cb(err, stats)*
 
 Gets gains for all skills over a certain `timeperiod`.
 
 __Note__ that negative `ranksGained` is good
 
 ```js
-let week = 24 * 7 * 3600
+let week = 24 * 7 * 3600 // a week in seconds
 
 cml.track('lynx titan', week, (err, stats) => {
 	console.log(stats.overall)
@@ -85,7 +124,7 @@ cml.track('lynx titan', week, (err, stats) => {
 })
 ```
 
-####__.recordsOfPlayer([username], [callback])__ *-> cb(err, records)*
+### __`.recordsOfPlayer(username, callback)`__ *-> cb(err, records)*
 
 Gets daily, weekly and monthly records for all skills.
 
@@ -102,7 +141,7 @@ cml.recordsOfPlayer('lynx titan', (err, records) => {
 })
 ```
 
-####__.virtualHiscores([username], [callback])__ *-> cb(err, info)*
+### __`.virtualHiscores(username, callback)`__ *-> cb(err, vh)*
 
 Virtual Hiscores for a player.
 
@@ -117,7 +156,7 @@ cml.virtualHiscores('lynx titan', (err, vh) => {
 })
 ```
 
-####__.ttm([username], [callback])__ *-> cb(err, ttm)*
+### __`.ttm(username, callback)`__ *-> cb(err, ttm)*
 
 Gets efficient hours left for account to be maxed, and rank in terms of maxing.
 Can be used to find out who were first to max.
@@ -130,7 +169,7 @@ cml.ttm('lynx titan', (err, ttm) => {
 })
 ```
 
-####__.currentTop([skill], [timeperiod], [callback])__ *-> cb(err, top)*
+### __`.currentTop(skill, timeperiod, callback)`__ *-> cb(err, top)*
 
 Gets the Current Top for any skill (top 30 players).
 
@@ -149,7 +188,7 @@ cml.currentTop('ehp', 'week', (err, top) => {
 })
 ```
 
-####__.records([obj], [callback])__ *-> cb(err, records)*
+### __`.records(obj, callback)`__ *-> cb(err, records)*
 
 Gets records for any skill over a certain time.
 
@@ -171,7 +210,7 @@ cml.records({
 })
 ```
 
-####__.compTotal([compID], [skill], [callback])__ *-> cb(err, xp)*
+### __`.compTotal(compID, skill, callback)`__ *-> cb(err, xp)*
 
 Gets total xp amongst all participants in any skill.
 
@@ -182,7 +221,7 @@ cml.compTotal(7180, 'overall', (err, xp) => { // compID can also be a string
 })
 ```
 
-####__.compRankings([compID], [skill], [callback])__ *-> cb(err, rankings)*
+### __`.compRankings(compID, skill, callback)`__ *-> cb(err, rankings)*
 
 Gets ranking amongst participants in any skill (who has gained the most xp/ehp).
 
@@ -202,19 +241,19 @@ cml.compRankings(7180, 'overall', (err, rankings) => {
 })
 ```
 
-####__.previousName([username], [callback])__ *-> cb(err, previous)*
+### __`.previousName(username, callback)`__ *-> cb(err, previous)*
 
 Checks if there was a previous username for the account.
 If there is, `previous` is set to the previous username.
 If there wasn't, `previous === false`
 
-####__.search([username], [callback])__ *-> cb(err, res)*
+### __`.search(username, callback)`__ *-> cb(err, res)*
 
 Searches to see if an account exists.
 `res === true` if account exists and `res === false` if not.
 Even if Crystal Math Labs has no data for the account, `res === true`
 
-####__.convertXPtoLVL([xp], [cap])__
+### __`.convertXPtoLVL(xp, [cap])`__
 
 Converts xp to level.
 
@@ -226,7 +265,7 @@ console.log(cml.convertXPtoLVL(13034431))
 // 99
 ```
 
-####__.convertLVLtoXP([lvl])__
+### __`.convertLVLtoXP(lvl)`__
 
 Converts level to xp.
 
@@ -234,3 +273,7 @@ Converts level to xp.
 console.log(cml.convertLVLtoXP(99))
 // 13034431
 ```
+
+## License
+
+MIT

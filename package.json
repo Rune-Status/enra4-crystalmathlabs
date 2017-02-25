@@ -1,7 +1,9 @@
 {
   "name": "crystalmethlabs",
-  "description": "something something http://crystalmathlabs.com",
-  "author": "enra4",
+  "description": "Library for using Crystal Math Labs",
+  "author": "enra4 <cudcsb@gmail.com>",
+  "version": "0.0.1",
+  "main": "lib/crystalmethlabs.js",
   "dependencies": {
     "request": "^2.79.0"
   },
@@ -12,5 +14,17 @@
   "scripts": {
     "test": "tape test/tests.js",
     "cache-gen": "node test/cache/generate"
-  }
+  },
+  "repository": {
+	  "type": "git",
+	  "url": "git+https://github.com/enra4/crystalmethlabs.git"
+  },
+  "keywords:": [
+	  "CML",
+	  "CrystalMathLabs",
+	  "runescape",
+	  "osrs",
+	  "rs3"
+  ],
+  "license": "MIT"
 }
