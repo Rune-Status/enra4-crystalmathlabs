@@ -2,9 +2,9 @@
 
 # Methods
 
-__update([username], [callback])__ *-> cb(err)*
+####__.update([username], [callback])__ *-> cb(err)*
 
-Updates cml profile
+Updates cml profile.
 
 ```js
 // callback is optional
@@ -15,9 +15,9 @@ cml.update('lynx titan', (err) => {
 })
 ```
 
-__lastcheck([username], [callback])__ *-> cb(err, sec)*
+####__.lastcheck([username], [callback])__ *-> cb(err, sec)*
 
-Checks when a player was last checked
+Checks when a player was last checked.
 
 ```js
 cml.lastcheck('lynx titan', (err, sec) => {
@@ -25,9 +25,9 @@ cml.lastcheck('lynx titan', (err, sec) => {
 })
 ```
 
-__lastchange([username], [callback])__ *-> cb(err, sec)*
+####__.lastchange([username], [callback])__ *-> cb(err, sec)*
 
-Checks when a player was last changed
+Checks when a player was last changed.
 
 ```js
 cml.lastcheck('lynx titan', (err, sec) => {
@@ -35,13 +35,11 @@ cml.lastcheck('lynx titan', (err, sec) => {
 })
 ```
 
-__stats([username], [callback])__ *-> cb(err, stats)*
+####__.stats([username], [callback])__ *-> cb(err, stats)*
 
-Gets stats for a player
-
-`stats` is an object containing objects for each skill
-
-Each skill is an object containing keys: `level`, `xp` and `rank`
+Gets stats for a player.
+`stats` is an object containing objects for each skill.
+Each skill is an object containing keys: `level`, `xp` and `rank`.
 
 __Note__ that the `ehp` object contains keys: `hours` and `rank`
 
@@ -56,9 +54,9 @@ cml.stats('lynx titan', (err, stats) => {
 })
 ```
 
-__track([username], [timeperiod], [callback])__ *-> cb(err, stats)*
+####__.track([username], [timeperiod], [callback])__ *-> cb(err, stats)*
 
-Gets gains for all skills over a certain `timeperiod`
+Gets gains for all skills over a certain `timeperiod`.
 
 __Note__ that negative `ranksGained` is good
 
@@ -87,9 +85,9 @@ cml.track('lynx titan', week, (err, stats) => {
 })
 ```
 
-__recordsOfPlayer([username], [callback])__ *-> cb(err, records)*
+####__.recordsOfPlayer([username], [callback])__ *-> cb(err, records)*
 
-Gets daily, weekly and monthly records for all skills
+Gets daily, weekly and monthly records for all skills.
 
 ```js
 cml.recordsOfPlayer('lynx titan', (err, records) => {
@@ -104,11 +102,25 @@ cml.recordsOfPlayer('lynx titan', (err, records) => {
 })
 ```
 
-__ttm([username], [callback])__ *-> cb(err, ttm)*
+####__.virtualHiscores([username], [callback])__ *-> cb(err, info)*
 
-Gets efficient hours left for account to be maxed, and rank in terms of maxing
+Virtual Hiscores for a player.
 
-Can be used to find out who were first to max
+```js
+cml.virtualHiscores('lynx titan', (err, vh) => {
+	console.log(vh)
+	// { total: { rank: 1, level: 2819 },
+	//   recordsHeld: { held: 67, rank: 1 },
+	//   frontpageCount: { count: 67, rank: 1 } }
+	//
+	// as you can see, very few virtual hiscores are supported
+})
+```
+
+####__.ttm([username], [callback])__ *-> cb(err, ttm)*
+
+Gets efficient hours left for account to be maxed, and rank in terms of maxing.
+Can be used to find out who were first to max.
 
 ```js
 cml.ttm('lynx titan', (err, ttm) => {
@@ -118,18 +130,107 @@ cml.ttm('lynx titan', (err, ttm) => {
 })
 ```
 
-__previousName([username], [callback])__ *-> cb(err, previous)*
+####__.currentTop([skill], [timeperiod], [callback])__ *-> cb(err, top)*
 
-Checks if there was a previous username for the account
+Gets the Current Top for any skill (top 30 players).
 
-If there was, `previous` is set to the previous username
+* `skill` *String* that can be set to any skill, including `'overall'` & `'ehp'`
+* `timeperiod` *String* that can be set to `day`, `week` or `month`
 
+```js
+cml.currentTop('ehp', 'week', (err, top) => {
+	console.log(top)
+	// [ { username: 'eg_froggen', gained: 106.69 },
+	//   { username: 'razor_beast', gained: 102.32 },
+	//   { username: 'fk_wmk', gained: 100.93 },
+	//   ...
+	//   ...
+	//   { username: 'abekat', gained: 68.17 } ]
+})
+```
+
+####__.records([obj], [callback])__ *-> cb(err, records)*
+
+Gets records for any skill over a certain time.
+
+* `obj` *Object* containing information for http request
+	* `skill` *String* that can be set to any skill, including `'overall'` & `'ehp'`
+	* `timeperiod` *String* that can be set to `day`, `week` or `month`
+	* `count` *Number | String* for how many records to be shown (for example: top 5 or top 10)
+
+```js
+cml.records({
+	skill: 'ehp',
+	timeperiod: 'month',
+	count: 3
+}, (err, records) => {
+	console.log(records)
+	// [ { username: 'p_udding', hours: 621.6 },
+	//   { username: 'lynx_titan', hours: 544.07 },
+	//   { username: 'fredimmu', hours: 530.14 } ]
+})
+```
+
+####__.compTotal([compID], [skill], [callback])__ *-> cb(err, xp)*
+
+Gets total xp amongst all participants in any skill.
+
+```js
+cml.compTotal(7180, 'overall', (err, xp) => { // compID can also be a string
+	console.log(xp)
+	// 5701651
+})
+```
+
+####__.compRankings([compID], [skill], [callback])__ *-> cb(err, rankings)*
+
+Gets ranking amongst participants in any skill (who has gained the most xp/ehp).
+
+```js
+cml.compRankings(7180, 'overall', (err, rankings) => {
+	console.log(rankings)
+	// [ { username: 'awildcow',
+	//     startXP: 76251226,
+	//     currentXP: 78880141,
+	//     gainedXP: 2628915 },
+	//   ...
+	//   ...
+	//   { username: 'ge_tracker',
+	//     startXP: 2686104,
+	//     currentXP: 2954615,
+	//     gainedXP: 268511 } ]
+})
+```
+
+####__.previousName([username], [callback])__ *-> cb(err, previous)*
+
+Checks if there was a previous username for the account.
+If there is, `previous` is set to the previous username.
 If there wasn't, `previous === false`
 
-__search([username], [callback])__ *-> cb(err, res)*
+####__.search([username], [callback])__ *-> cb(err, res)*
 
-Searches to see if an account exists
-
-`res` is `true` if account exists and `false` if not
-
+Searches to see if an account exists.
+`res === true` if account exists and `res === false` if not.
 Even if Crystal Math Labs has no data for the account, `res === true`
+
+####__.convertXPtoLVL([xp], [cap])__
+
+Converts xp to level.
+
+* `xp` *Number* you want to convert
+* `cap` *Number* for a level you dont want the returned value to be above (optional, default: `99`)
+
+```js
+console.log(cml.convertXPtoLVL(13034431))
+// 99
+```
+
+####__.convertLVLtoXP([lvl])__
+
+Converts level to xp.
+
+```js
+console.log(cml.convertLVLtoXP(99))
+// 13034431
+```
