@@ -39,6 +39,38 @@ let osrsThird = new Crystalmethlabs('fghkfdjhkl') // -> osrs
 let rs3 = new Crystalmethlabs('rs3') // -> rs3
 ```
 
+## Properties
+
+### __`.skills`__
+
+*Array* containing all the skills, including `overall` and `ehp`.
+Differentiates depending on if `game` is `'osrs'` or `'rs3'`.
+
+```js
+const Crystalmethlabs = require('crystalmethlabs')
+
+let osrs = new Crystalmethlabs('osrs')
+let rs3 = new Crystalmethlabs('rs3')
+
+console.log(osrs.skills)
+// [ 'overall',
+//   'attack',
+//   ...
+//   ...
+//   'construction',
+//   'ehp' ]
+console.log(osrs.skills.length) // 25
+
+console.log(rs3.skills)
+// [ 'overall',
+//   'attack',
+//   ...
+//   ...
+//   'invention',
+//   'ehp' ]
+console.log(rs3.skills.length) // 29
+```
+
 ## Methods
 
 ### __`.update(username, [callback])`__  *-> cb(err)*
