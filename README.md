@@ -32,11 +32,11 @@ npm install crystalmethlabs --save
 ```js
 const Crystalmethlabs = require('crystalmethlabs')
 
-let osrsFirst = new Crystalmethlabs('osrs') // -> osrs
-let osrsSecond = new Crystalmethlabs() // -> osrs
-let osrsThird = new Crystalmethlabs('fghkfdjhkl') // -> osrs
+const osrsFirst = new Crystalmethlabs('osrs') // -> osrs
+const osrsSecond = new Crystalmethlabs() // -> osrs
+const osrsThird = new Crystalmethlabs('fghkfdjhkl') // -> osrs
 
-let rs3 = new Crystalmethlabs('rs3') // -> rs3
+const rs3 = new Crystalmethlabs('rs3') // -> rs3
 ```
 
 ## Properties
@@ -49,8 +49,8 @@ Differentiates depending on if `game` is `'osrs'` or `'rs3'`.
 ```js
 const Crystalmethlabs = require('crystalmethlabs')
 
-let osrs = new Crystalmethlabs('osrs')
-let rs3 = new Crystalmethlabs('rs3')
+const osrs = new Crystalmethlabs('osrs')
+const rs3 = new Crystalmethlabs('rs3')
 
 console.log(osrs.skills)
 // [ 'overall',
@@ -79,8 +79,8 @@ Updates cml profile.
 
 ```js
 // callback is optional
-cml.update('lynx titan', (err) => {
-	if(err) {
+cml.update('lynx titan', err => {
+	if (err) {
 		console.log(err)
 	}
 })
@@ -132,7 +132,7 @@ Gets gains for all skills over a certain `timeperiod`.
 __Note__ that negative `ranksGained` is good
 
 ```js
-let week = 24 * 7 * 3600 // a week in seconds
+const week = 24 * 7 * 3600 // a week in seconds
 
 cml.track('lynx titan', week, (err, stats) => {
 	console.log(stats.overall)

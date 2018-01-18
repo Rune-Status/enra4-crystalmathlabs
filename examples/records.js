@@ -5,8 +5,8 @@ const CML = require('../lib/crystalmethlabs')
 const meth = new CML()
 
 meth.recordsOfPlayer('lynx titan', (err, records) => {
-	let timePeriod = ['day', 'week', 'month']
-	let best = {
+	const timePeriod = ['day', 'week', 'month']
+	const best = {
 		day: {
 			skill: undefined,
 			xp: 0
@@ -21,9 +21,9 @@ meth.recordsOfPlayer('lynx titan', (err, records) => {
 		}
 	}
 
-	for(let period of timePeriod) {
-		for(let i = 1; i < meth.skills.length - 1; i++) { // - 1 because doesnt want to include ehp
-			if(records[meth.skills[i]][period] > best[period].xp) {
+	for (const period of timePeriod) {
+		for (let i = 1; i < meth.skills.length - 1; i++) { // - 1 because doesnt want to include ehp
+			if (records[meth.skills[i]][period] > best[period].xp) {
 				best[period].skill = meth.skills[i]
 				best[period].xp = records[meth.skills[i]][period]
 			}
