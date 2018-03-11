@@ -4,16 +4,16 @@
 const CML = require('../lib/crystalmethlabs')
 const meth = new CML()
 
-let week = 24 * 7 * 3600
+const week = 24 * 7 * 3600
 
 meth.track('lynx titan', week, (err, stats) => {
-	let mostXPGained = {
+	const mostXPGained = {
 		skill: undefined,
 		xp: 0
 	}
 
-	for(let skill of meth.skills) {
-		if(stats[skill].xpGained > mostXPGained.xp && skill !== 'overall') {
+	for (const skill of meth.skills) {
+		if (stats[skill].xpGained > mostXPGained.xp && skill !== 'overall') {
 			mostXPGained.skill = skill
 			mostXPGained.xp = stats[skill].xpGained
 		}

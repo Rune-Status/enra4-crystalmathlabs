@@ -5,10 +5,10 @@ const CML = require('../lib/crystalmethlabs')
 const meth = new CML()
 
 meth.lastcheck('lynx titan', (err, sec) => {
-	let day = 24 * 360 // a day in seconds
+	const day = 24 * 360 // a day in seconds
 
-	if(sec > day) {
-		meth.update('lynx titan', (err) => {
+	if (sec > day) {
+		meth.update('lynx titan', err => {
 			meth.track('lynx titan', day, (err, stats) => {
 				console.log(stats)
 			})
