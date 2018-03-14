@@ -3,28 +3,26 @@
   "description": "Library for using Crystal Math Labs",
   "author": "enra4 <cudcsb@gmail.com>",
   "version": "0.0.3",
+  "license": "MIT",
   "main": "lib/crystalmethlabs.js",
-  "dependencies": {
-    "request": "^2.79.0"
-  },
-  "devDependencies": {
-    "rewire": "^2.5.2",
-    "tape": "^4.6.3"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/enra4/crystalmethlabs.git"
   },
   "scripts": {
-    "test": "tape test/tests.js",
-    "cache-gen": "node test/cache/generate"
+    "test": "ava ./test/cml.js"
   },
-  "repository": {
-	  "type": "git",
-	  "url": "git+https://github.com/enra4/crystalmethlabs.git"
+  "dependencies": {
+    "got": "^8.3.0"
   },
-  "keywords:": [
-	  "CML",
-	  "CrystalMathLabs",
-	  "runescape",
-	  "osrs",
-	  "rs3"
-  ],
-  "license": "MIT"
+  "devDependencies": {
+	"ava": "^0.25.0"
+  },
+  "keywords": [
+    "CML",
+    "CrystalMathLabs",
+    "runescape",
+    "osrs",
+    "rs3"
+  ]
 }
