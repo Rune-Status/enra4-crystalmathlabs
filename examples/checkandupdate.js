@@ -1,19 +1,27 @@
 // checks to see if a user has been checked in the last day
 // and if not, update user and get the stats gained during last day
+const CML = require('../lib/crystalmethlabs.js');
 
-const CML = require('../lib/crystalmethlabs')
-const meth = new CML()
+const meth = new CML();
 
-meth.lastcheck('lynx titan', (err, sec) => {
-	const day = 24 * 360 // a day in seconds
-
-	if (sec > day) {
-		meth.update('lynx titan', err => {
-			meth.track('lynx titan', day, (err, stats) => {
-				console.log(stats)
-			})
-		})
-	} else {
-		console.log('lynx titan has recently been updated.')
+(async () => {
+	const {err, sec} = await meth.lastcheck('lynx titan');
+	if (err) {
+		console.log(err);
+		return;
 	}
-})
+
+	const day = 24 * 3600; // a day in seconds
+	if (sec > day) {
+		const {err: updateError} = await meth.update('lynx titan');
+		if (updateError) {
+			console.log(updateError);
+			return;
+		}
+
+		const {err: trackError} = await meth.track('lynx titan');
+		if (trackError) {
+			console.log(trackError);
+		}
+	}
+})();
