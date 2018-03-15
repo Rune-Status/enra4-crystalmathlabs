@@ -26,7 +26,7 @@ const cml = new Crystalmethlabs();
 
 **Requires node version ``8.0.0`` or above**
 
-If you want to use and older *and possibly more broken* version, 
+If you want to use and older *and possibly more broken* version,
 [here you go](https://github.com/enra4/crystalmethlabs/tree/old)
 
 ```
@@ -255,13 +255,13 @@ Gets the Current Top for any skill (top 30 players).
 })();
 ```
 
-### __`.records(skill, timeperiod, count)`__ *-> {err, records}*
+### __`.records(skill, timeperiod, [count])`__ *-> {err, records}*
 
 Gets records for any skill over a certain time.
 
 * `skill` *String* that can be set to any skill, including `'overall'` & `'ehp'`
 * `timeperiod` *String* that can be set to `day`, `week` or `month`
-* `count` *Number | String* for how many records to be shown (for example: top 5 or top 10)
+* `count` *Number | String* for how many records to be shown (optional, default: `30`)
 
 ```js
 (async () => {
