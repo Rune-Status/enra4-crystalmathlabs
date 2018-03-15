@@ -2,7 +2,7 @@
   "name": "crystalmethlabs",
   "description": "Library for using Crystal Math Labs",
   "author": "enra4 <cudcsb@gmail.com>",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "license": "MIT",
   "main": "lib/crystalmethlabs.js",
   "repository": {
@@ -16,7 +16,7 @@
     "got": "^8.3.0"
   },
   "devDependencies": {
-	"ava": "^0.25.0"
+    "ava": "^0.25.0"
   },
   "keywords": [
     "CML",
