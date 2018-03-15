@@ -1,5 +1,8 @@
 # Crystalmethlabs
 
+[![build](https://travis-ci.org/enra4/crystalmethlabs.svg?branch=master)](https://travis-ci.org/enra4/crystalmethlabs)
+[![npm package](https://badge.fury.io/js/crystalmethlabs.svg)](https://www.npmjs.com/package/crystalmethlabs)
+
 A JavaScript library for using Crystal Math Labs
 
 A bit rebellious when it comes to async functions, with inspiration from how to deal with errors from golang. Using destructuring assignment syntax, which you can read more about [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
